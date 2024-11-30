@@ -5,21 +5,28 @@ class Player:
         self.card = []
         self.num = num
         self.battle_flag = True
+        self.bet_amount = 0
     
     def get(self,get_amount):
         self.stack += get_amount
     
-    def receive_card(self, card):
+    def recieve_card(self, card):
         self.card.append(card)
     
     def reset(self):
         self.bet_amount = 0
         self.card = []
         self.battle_flag = True
+    
+    def bet(self,bet_amount):
+        self.bet_amount += bet_amount
+        self.stack -= bet_amount
 
     def take_action(self,field_max_bet,min_raise):
         while True:
-            action = input("choose your action, f(fold) or c(call) or r(raise)")
+            print("'s hand :",{self.card[0]},{self.card[1]})
+            print("current stack",{self.stack},"current_bet",self.bet_amount)
+            action = input(f"{self.name}:choose your action, f(fold) or c(call) or r(raise)")
             if action == "f":
                 self.battle_flag == False
                 return "f"
